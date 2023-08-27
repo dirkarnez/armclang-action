@@ -17,7 +17,9 @@ RUN sudo mkdir -p /src/workspace
 
 VOLUME /src/workspace
 
-CMD cd /src/workspace && \
+CMD cd /home/ubuntu/AC6/bin && \
+ls -R && \
+cd /src/workspace && \
 aarch64-none-elf-g++ --version && \
 git clone --recurse-submodules https://github.com/lvgl/lvgl.git && \ 
 cd lvgl && \
