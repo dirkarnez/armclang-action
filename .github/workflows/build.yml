@@ -1,0 +1,32 @@
+name: docker-compose-actions-workflow
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+      - 'c*'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      targetZip: STM32CubeMX-LED-${{ github.ref_name }}-gcc-arm-none-eabi-10.3-2021.10.zip
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build the stack
+        run: docker-compose up --build && docker-compose down
+        
+#       - name: Archive Release
+#         uses: thedoctor0/zip-release@master
+#         with:
+#           type: 'zip'
+#           directory: "workspace/fhir"
+#           filename: "${{ env.targetZip }}"
+
+      - name: Release prebuilt
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "STM32CubeMX-LED/build/${{ env.targetZip }}"
+          allowUpdates: true
+          token: ${{ secrets.GITHUB_TOKEN }}
