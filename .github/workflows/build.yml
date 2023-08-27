@@ -10,7 +10,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      targetZip: STM32CubeMX-LED-${{ github.ref_name }}-gcc-arm-none-eabi-10.3-2021.10.zip
+      targetZip:  armclang-action-${{ github.ref_name }}.zip
     steps:
       - uses: actions/checkout@v3
 
@@ -27,6 +27,6 @@ jobs:
       - name: Release prebuilt
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "STM32CubeMX-LED/build/${{ env.targetZip }}"
+          artifacts: "build/${{ env.targetZip }}"
           allowUpdates: true
           token: ${{ secrets.GITHUB_TOKEN }}
