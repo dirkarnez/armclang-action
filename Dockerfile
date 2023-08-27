@@ -1,4 +1,4 @@
-ROM armswdev/arm-tools:bare-metal-compilers
+FROM armswdev/arm-tools:bare-metal-compilers
 
 RUN sudo rm /var/lib/apt/lists/lock && \
 sudo apt-get update -y && \
