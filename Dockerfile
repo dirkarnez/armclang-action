@@ -25,5 +25,5 @@ cd /src/workspace && \
 armclang --version && \
 armclang -mcpu=Cortex-M3 --target=arm-arm-none-eabi -o build\main main.c
 cd build && \
-zip --symlinks -r armclang-action.zip . && \
+zip --symlinks -r armclang-action-v1.0.0.zip . && \
 exit
